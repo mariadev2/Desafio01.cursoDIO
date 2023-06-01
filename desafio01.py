@@ -19,7 +19,7 @@ while True:
 
     if opcao == 1:
         saldo_anterior = deposito
-        print(f"Extrato\n Seus depositos anteriores foi R$ {lista_deposito}\nSeus saques anteriores foi R$ {lista_saque}\nseu saldo é R$ {saldo:.2f}")
+        print(f"Extrato\n Seus depositos anteriores foi R$ {lista_deposito}\nSeus sques anteriores foi R$ {lista_saque}\nseu saldo é R$ {saldo:.2f}")
     elif opcao == 2:
             deposito = int(input("seu deposito:"))
             lista_deposito.append(deposito)
