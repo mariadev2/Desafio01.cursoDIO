@@ -1,5 +1,5 @@
 lista_deposito = []
-saldo = 0
+saldo = 5
 deposito =0
 limite_saque_vezes_cont = 0
 limite_saque = 500
