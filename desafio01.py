@@ -17,6 +17,7 @@ while True:
     opcao = int(input("Qual opção desejada?\n"))
 
     if opcao == 1:
+<<<<<<< HEAD
         print("")
         print("#"*50)
         print("EXTRATO")
@@ -24,6 +25,16 @@ while True:
         print(f"Seus saques anteriores foi R$ {lista_saque}\n"if saque > 0 else "Sem saques anteriores")
         print(f"seu saldo é R$ {saldo:.2f}")
         print("#"*50)
+=======
+        saldo_anterior = deposito
+        print(f"Extrato\n Seus depositos anteriores foi R$ {lista_deposito}\nSeus saques anteriores foi R$ {lista_saque}\nseu saldo é R$ {saldo:.2f}")
+    elif opcao == 2:
+            deposito = int(input("seu deposito:"))
+            lista_deposito.append(deposito)
+            saldo += deposito
+            print(f"\nSeu saldo atual é {saldo}\n")
+            
+>>>>>>> c783c532d9717e48bd3cd249da74fd4d81262ba7
 
     elif opcao == 2:
             deposito = int(input("seu deposito:\n"))
