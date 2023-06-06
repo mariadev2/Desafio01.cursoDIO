@@ -1,67 +1,50 @@
-lista_deposito = []
-lista_saque = []
+#variaveis
+limite_vezes=0
+limite_vezes_permitido =3 
+limite_valor =500
 saldo = 0
-deposito =0
-limite_saque_vezes_cont = 0
-limite_saque = 500
-limite_saque_vezes = 3
-saque = 0
-menu = f'''SELECIONE UMA OPÇÃO NO MENU:
-           [1]Extrato
-           [2]Deposito
-           [3]Saque
-           [4]Sair
-           '''
-while True:
-    print(menu)
-    opcao = int(input("Qual opção desejada?\n"))
-
-    if opcao == 1:
-        print("")
-        print("#"*50)
-        print("EXTRATO")
-        print(f"\nSeus depositos anteriores foram R$ {lista_deposito}\n" if deposito > 0 else "sem deposito")
-        print(f"Seus saques anteriores foi R$ {lista_saque}\n"if saque > 0 else "Sem saques anteriores")
-        print(f"seu saldo é R$ {saldo:.2f}")
-        print("#"*50)
-        saldo_anterior = deposito
-        print(f"Extrato\n Seus depositos anteriores foi R$ {lista_deposito}\nSeus saques anteriores foi R$ {lista_saque}\nseu saldo é R$ {saldo:.2f}")
-    elif opcao == 2:
-            deposito = int(input("seu deposito:"))
-            lista_deposito.append(deposito)
-            saldo += deposito
-            print(f"\nSeu saldo atual é {saldo}\n")
-            
-
-    elif opcao == 2:
-            deposito = int(input("seu deposito:\n"))
-            if deposito < 0:
-                print("insira um valor acima de 0")
-            else:
-                lista_deposito.append(deposito)
-                saldo += deposito
-                print(f"\nSeu saldo atual é {saldo}\n")
-  
-    elif opcao == 3:
-        realizar_saque()
-
-    elif opcao== 4:
-        print("operação finalizada!")
-        break
-    else: 
-        print("insira uma opção valida!")
-
-
-def realizar_saque(saldo, saque):
-    saque = int(input("Qual valor do saque\n"))
-    if limite_saque_vezes_cont >= 3:
-         print("Ultrapassou 3x")
-    elif saque > saldo:
-        print("Seu saque ultrapassou valor disponivel")
-    elif saque > limite_saque:
-        print("ultrapassou limite de saque")
+extrato_saque = []
+extrato_deposito = []
+#funções
+def realizar_deposito (*, deposito):
+    global saldo
+    if deposito > 0:
+        saldo += deposito
+        return saldo
     else:
-        lista_saque.append(saque)
+        print("insira um valor acima de 0")
+
+def realizar_saque(*,saque):
+    global limite_vezes, limite_valor, saldo
+    if saque > saldo:
+        print("Saldo insuficiente")
+    elif limite_vezes >= 3:
+        print("Voce ja ultrapassou os 3 saques, tente novamente amanhã!")
+    elif saque > limite_valor:
+        print("Seu saque nao deve ultrapassar R$ 500,00, tente novamente!")
+    else:
+        limite_vezes += 1
         saldo -= saque
-        limite_saque_vezes_cont += 1
-        print(f"\nSeu saldo atual é {saldo}\nVOCE TEM {limite_saque_vezes_cont} LIMITES PARA SACAR")
+    return saldo
+
+def exibir_extrato():
+    global extrato_saque, extrato_deposito
+    extrato_saque = extrato_saque.append(saque)
+    extrato_deposito = extrato_deposito.append(deposito)
+    return extrato_saque, extrato_deposito
+#funcionamento
+while True:
+    print(f"Seu saldo atual é {saldo}")
+    opcao_selecionada = int(input("MENU\n[1]Deposito\n[2]Saque\n[3]Extrato\n"))
+    if opcao_selecionada == 2:
+        saldo = realizar_saque(saque = int(input("saque")))
+        print(limite_vezes)
+    elif opcao_selecionada == 1:
+        saldo = realizar_deposito(deposito= int(input("Seu deposito")))
+    elif opcao_selecionada == 3:
+        extrato_saque = exibir_extrato()
+        extrato_deposito = exibir_extrato()
+        print(f"{extrato_deposito} {extrato_saque}")
+    else:
+        break
+        
