@@ -43,18 +43,7 @@ while True:
                 print(f"\nSeu saldo atual é {saldo}\n")
   
     elif opcao == 3:
-        saque = int(input("Qual valor do saque\n"))
-        if limite_saque_vezes_cont >= 3:
-            print("Ultrapassou 3x")
-        elif saque > saldo:
-            print("Seu saque ultrapassou valor disponivel")
-        elif saque > limite_saque:
-            print("ultrapassou limite de saque")
-        else:
-            lista_saque.append(saque)
-            saldo -= saque
-            limite_saque_vezes_cont += 1
-            print(f"\nSeu saldo atual é {saldo}\nVOCE TEM {limite_saque_vezes_cont} LIMITES PARA SACAR")
+        realizar_saque()
 
     elif opcao== 4:
         print("operação finalizada!")
@@ -63,3 +52,16 @@ while True:
         print("insira uma opção valida!")
 
 
+def realizar_saque(saldo, saque):
+    saque = int(input("Qual valor do saque\n"))
+    if limite_saque_vezes_cont >= 3:
+         print("Ultrapassou 3x")
+    elif saque > saldo:
+        print("Seu saque ultrapassou valor disponivel")
+    elif saque > limite_saque:
+        print("ultrapassou limite de saque")
+    else:
+        lista_saque.append(saque)
+        saldo -= saque
+        limite_saque_vezes_cont += 1
+        print(f"\nSeu saldo atual é {saldo}\nVOCE TEM {limite_saque_vezes_cont} LIMITES PARA SACAR")
