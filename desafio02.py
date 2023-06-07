@@ -1,12 +1,7 @@
 #variaveis
-limite_vezes=0
-limite_vezes_permitido =3 
-limite_valor =500
-saldo = 0
-saque = 0
-deposito = 0
-extrato_saque = []
-extrato_deposito = []
+limite_vezes_permitido, limite_valor, limite_vezes =3, 500, 0
+saldo,saque,deposito = 0, 0, 0
+extrato_saque, extrato_deposito = [], []
 #funções
 
 
@@ -31,7 +26,7 @@ def realizar_saque(*,saque):
         limite_vezes += 1
         saldo -= saque
         extrato_saque.append(saque)   
-        return saldo
+    return saldo
 
 #funcionamento
 while True:
@@ -40,7 +35,7 @@ while True:
 
     if opcao_selecionada == 2:
         saldo = realizar_saque(saque = int(input("Valor a ser sacado\n")))
-        print(f"{limite_vezes} Saque\n")
+        print(f"Foram realizados {limite_vezes} Saques\n")
 
     elif opcao_selecionada == 1:
         saldo = realizar_deposito(deposito= int(input("Valor a ser depositado\n")))
