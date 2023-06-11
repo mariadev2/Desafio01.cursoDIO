@@ -34,7 +34,8 @@ def main():
                      limite_valor=limite_valor,
                      limite_vezes=limite_vezes,
                      limite_vezes_permitidos=limite_vezes_permitido)
-        elif opcao_selecionada == "7":
+                
+        elif opcao_selecionada == 7:
             listar_contas(contas)
 
         elif opcao_selecionada == 1:
