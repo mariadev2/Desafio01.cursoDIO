@@ -6,9 +6,11 @@ def menu(opcao_selecionada):
     [1]Deposito
     [2]Saque
     [3]Extrato
-    [4]Sair
     [5]Criar usuário
     [6]Abrir conta
+    [7]listar contas
+    [4]Sair
+
     ****************************************
 
     '''))
@@ -32,7 +34,8 @@ def main():
                      limite_valor=limite_valor,
                      limite_vezes=limite_vezes,
                      limite_vezes_permitidos=limite_vezes_permitido)
-                
+        elif opcao_selecionada == "7":
+            listar_contas(contas)
 
         elif opcao_selecionada == 1:
                 deposito= float(input("Valor a ser depositado\n"))
@@ -44,6 +47,7 @@ def main():
         elif opcao_selecionada == 5:
              criar_usuario(usuarios)
              print(usuarios)
+
         elif opcao_selecionada==6:
              conta = len(contas) + 1
              conta = abrir_conta(agencia, conta, usuarios)
@@ -78,6 +82,15 @@ def abrir_conta (agencia,conta,usuarios):
      if usuario:
           print("conta criada com sucesso")
           return{"agencia":agencia,"conta":conta,"usuario":usuario}
+
+def listar_contas(contas):
+    for conta in contas:
+        linha = f"""\
+            Agência:\t{conta['agencia']}
+            C/C:\t\t{conta['numero_conta']}
+            Titular:\t{conta['usuario']['nome']}
+        """
+        print("=" * 100)
 
 def filtar(cpf,usuarios):
     usuarios_filtrados = [usuario for usuario in usuarios if usuario["cpf"] == cpf]
